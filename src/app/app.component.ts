@@ -35,9 +35,21 @@ export class AppComponent implements OnDestroy {
       console.log('Result', result);
       this.spellcards = result;
       this.spellcards.forEach(card => {
-        if (card.beschreibung.length > 1420) {
-          this.spellcards.push({titel: card.titel + ' 2', beschreibung: card.beschreibung.substr(1420, card.beschreibung.length - 1420)});
-          card.beschreibung = card.beschreibung.substr(0, 1420) + '...';
+        const count = (card.beschreibung.match('<br>') || []).length;
+        if (card.beschreibung.includes('-p2-')) {
+          const splitted = card.beschreibung.split('-p2-');
+          card.beschreibung = splitted[0];
+          this.spellcards.push({titel: card.titel + ' 2', beschreibung: splitted[1]});
+        }
+        let maxlength = 1200 - (count * 100);
+        maxlength = card.beschreibung.indexOf(' ', maxlength);
+        const descPage2 = '...' + card.beschreibung.substr(maxlength, card.beschreibung.length - maxlength);
+        if (card.beschreibung.length > maxlength && descPage2.length > 10) {
+          this.spellcards.push({
+            titel: card.titel + ' 2',
+            beschreibung: descPage2
+          });
+          card.beschreibung = card.beschreibung.substr(0, maxlength) + '...';
         }
       });
     }, (error: NgxCSVParserError) => {
