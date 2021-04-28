@@ -1,19 +1,19 @@
 @font-face {
   font-family: 'Bookinsanity';
-  src: url('/assets/fonts/Bookinsanity/Bookinsanity.otf') format('opentype');
+  src: url('/dnd-spell-card-generator/assets/fonts/Bookinsanity/Bookinsanity.otf') format('opentype');
   font-weight: normal;
 }
 
 @font-face {
   font-family: 'Bookinsanity Bold';
-  src: url('/assets/fonts/Bookinsanity/Bookinsanity Bold.otf') format('opentype');
+  src: url('/dnd-spell-card-generator/assets/fonts/Bookinsanity/Bookinsanity Bold.otf') format('opentype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Mr Eaves Small Caps';
-  src: url('/assets/fonts/Mr Eaves/Mr Eaves Small Caps.otf') format('opentype');
+  src: url('/dnd-spell-card-generator/assets/fonts/Mr Eaves/Mr Eaves Small Caps.otf') format('opentype');
   font-weight: normal;
 }
 
@@ -23,10 +23,10 @@ body {
 }
 
 .container {
-  background-image: url('/assets/img/parchment.jpg');
-  background-size: 510px auto;
+  background-image: url('/dnd-spell-card-generator/assets/img/parchment.jpg');
+  background-size: 500px auto;
   padding: 5px;
-  width: 500px !important;
+  width: 500px;
   height: 348px;
 }
 
@@ -40,6 +40,22 @@ body {
   font-family: "Bookinsanity", serif;
   margin: 0;
   font-size: 11px;
+}
+
+.stat-table {
+  width: 100%;
+  .col1{
+    width: 90px;
+  }
+  .col2 {
+    width: 200px;
+  }
+  .col3 {
+    width: 60px;
+  }
+  .col4 {
+    width: 150px;
+  }
 }
 
 .line-small {

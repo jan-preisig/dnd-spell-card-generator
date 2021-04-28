@@ -8,7 +8,7 @@ import {Subscription} from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnDestroy{
+export class AppComponent implements OnDestroy {
   title = 'dnd-spell-card-generator';
   spellcards = [];
   header = true;
@@ -29,13 +29,14 @@ export class AppComponent implements OnDestroy{
   }
 
   processCSV($event: any): void {
-    const files = $event.srcElement.files;
+    const files = $event.target.files;
     this.ngxCsvParser.parse(files[0], {header: this.header, delimiter: ';'})
       .pipe().subscribe((result: Array<any>) => {
       console.log('Result', result);
       this.spellcards = result;
       this.spellcards.forEach(card => {
         if (card.beschreibung.length > 1420) {
+          this.spellcards.push({titel: card.titel + ' 2', beschreibung: card.beschreibung.substr(1420, card.beschreibung.length - 1420)});
           card.beschreibung = card.beschreibung.substr(0, 1420) + '...';
         }
       });

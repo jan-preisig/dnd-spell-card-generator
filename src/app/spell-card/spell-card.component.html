@@ -1,26 +1,33 @@
 <div class="container">
   <h1 class="dnd-header">{{spellcard.titel}}</h1>
   <div class="fade-effect2 line-big"></div>
-
-  <table class="dnd-text">
+  <table class="dnd-text stat-table" *ngIf="statsAvailable()">
     <tr>
-      <td>Zeitaufwand: </td>
-      <td>{{spellcard.zeitaufwand}}</td>
+      <td class="col1">Zeitaufwand: </td>
+      <td class="col2">{{spellcard.zeitaufwand}}</td>
+      <td class="col3">Level: </td>
+      <td class="col4">{{spellcard.level}}</td>
     </tr>
     <tr>
-      <td>Reichweite:</td>
-      <td>{{spellcard.reichweite}}</td>
+      <td class="col1">Reichweite:</td>
+      <td class="col2">{{spellcard.reichweite}}</td>
+      <td class="col3">Typ: </td>
+      <td class="col4">{{spellcard.typ}}</td>
     </tr>
     <tr>
-      <td>Komponenten:</td>
-      <td>{{spellcard.komponenten}}</td>
+      <td class="col1">Komponenten:</td>
+      <td class="col2">{{spellcard.komponenten}}</td>
+      <td class="col3">Klasse: </td>
+      <td class="col4">{{spellcard.klasse}}</td>
     </tr>
     <tr>
-      <td>Wirkungsdauer:</td>
-      <td>{{spellcard.wirkungsdauer}}</td>
+      <td class="col1">Wirkungsdauer:</td>
+      <td class="col2">{{spellcard.wirkungsdauer}}</td>
+      <td class="col3"></td>
+      <td class="col4"></td>
     </tr>
   </table>
-  <div class="fade-effect2 line-small"></div>
+  <div class="fade-effect2 line-small" *ngIf="statsAvailable()"></div>
 
-  <p class="dnd-text">{{spellcard.beschreibung}}</p>
+  <p class="dnd-text" [innerHTML]="spellcard.beschreibung"></p>
 </div>

@@ -10,9 +10,15 @@ export class SpellCardComponent implements OnInit {
   @Input()
   spellcard: any;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
+
+  statsAvailable(): boolean {
+    return this.spellcard.zeitaufwand || this.spellcard.level || this.spellcard.reichweite || this.spellcard.typ ||
+      this.spellcard.komponenten || this.spellcard.klasse || this.spellcard.wirkungsdauer;
   }
 
 }
