@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   myInputVariable: ElementRef;
   subscriptions: Subscription[] = [];
 
-  constructor(private eventService: EventService) {
+  constructor(public eventService: EventService) {
     this.subscriptions.push(eventService.onEnterSubject.subscribe(() => this.myInputVariable.nativeElement.value = ''));
   }
 
