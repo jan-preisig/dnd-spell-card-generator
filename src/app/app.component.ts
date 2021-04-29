@@ -35,19 +35,27 @@ export class AppComponent implements OnDestroy {
       console.log('Result', result);
       this.spellcards = result;
       this.spellcards.forEach((card, index) => {
-        const count = (card.beschreibung.match('<br>') || []).length;
+        const countLinebreaks = (card.beschreibung.match('<br>') || []).length;
+        const pageNr = card.page ? card.page : 1;
         if (card.beschreibung.includes('-p2-')) {
           const splitted = card.beschreibung.split('-p2-');
           card.beschreibung = splitted[0];
-          this.spellcards.splice(index + 1, 0, {titel: card.titel + ' 2', beschreibung: splitted[1]});
+          this.spellcards.splice(index + 1, 0, {
+            titel: (card.mainTitle ? card.mainTitle : card.titel) + ' ' + (pageNr + 1),
+            mainTitle: card.titel,
+            beschreibung: splitted[1],
+            page: (pageNr + 1)
+          });
         }
-        let maxlength = 1200 - (count * 100);
+        let maxlength = 1200 - (countLinebreaks * 100);
         maxlength = card.beschreibung.indexOf(' ', maxlength);
         const descPage2 = '...' + card.beschreibung.substr(maxlength, card.beschreibung.length - maxlength);
         if (card.beschreibung.length > maxlength && descPage2.length > 10) {
           this.spellcards.splice(index + 1, 0, {
-            titel: card.titel + ' 2',
-            beschreibung: descPage2
+            titel: (card.mainTitle ? card.mainTitle : card.titel) + ' ' + (pageNr + 1),
+            mainTitle: card.titel,
+            beschreibung: descPage2,
+            page: (pageNr + 1)
           });
           card.beschreibung = card.beschreibung.substr(0, maxlength) + '...';
         }

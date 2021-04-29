@@ -5,8 +5,8 @@
     <tr>
       <td class="col1">Zeitaufwand: </td>
       <td class="col2">{{spellcard.zeitaufwand}}</td>
-      <td class="col3">Level: </td>
-      <td class="col4">{{spellcard.level}}</td>
+      <td class="col3">Grad: </td>
+      <td class="col4">{{spellcard.grad}}</td>
     </tr>
     <tr>
       <td class="col1">Reichweite:</td>
@@ -15,16 +15,14 @@
       <td class="col4">{{spellcard.typ}}</td>
     </tr>
     <tr>
-      <td class="col1">Komponenten:</td>
-      <td class="col2">{{spellcard.komponenten}}</td>
+      <td class="col1">Wirkungsdauer:</td>
+      <td class="col2">{{spellcard.wirkungsdauer}}</td>
       <td class="col3">Klasse: </td>
       <td class="col4">{{spellcard.klasse}}</td>
     </tr>
     <tr>
-      <td class="col1">Wirkungsdauer:</td>
-      <td class="col2">{{spellcard.wirkungsdauer}}</td>
-      <td class="col3"></td>
-      <td class="col4"></td>
+      <td class="col1">Komponenten:</td>
+      <td class="col2" colspan="3">{{spellcard.komponenten}}</td>
     </tr>
   </table>
   <div class="fade-effect2 line-small" *ngIf="statsAvailable()"></div>
