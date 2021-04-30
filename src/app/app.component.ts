@@ -12,6 +12,7 @@ export class AppComponent implements OnDestroy {
   title = 'dnd-spell-card-generator';
   spellcards = [];
   header = true;
+  printViewEnabled = false;
   subscriptions: Subscription[] = [];
 
   constructor(private ngxCsvParser: NgxCsvParser, private eventService: EventService) {
@@ -22,6 +23,10 @@ export class AppComponent implements OnDestroy {
   @HostListener('window:keyup.enter', ['$event'])
   onEnter($event: any): void {
     this.eventService.onEnterSubject.next($event);
+  }
+  @HostListener('window:keydown.control.p', ['$event'])
+  onPrint($event: any): void {
+    this.printViewEnabled = true;
   }
 
   private clearSpells(): void {

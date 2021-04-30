@@ -6,12 +6,14 @@ import {SpellCardComponent} from './spell-card/spell-card.component';
 import {FormsModule} from '@angular/forms';
 import {NgxCsvParserModule} from 'ngx-csv-parser';
 import { HomeComponent } from './home/home.component';
+import { PopupComponent } from './popup/popup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SpellCardComponent,
-    HomeComponent
+    HomeComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,

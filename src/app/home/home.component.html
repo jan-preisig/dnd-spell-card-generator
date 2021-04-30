@@ -1,4 +1,10 @@
-<h1>Willkommen beim DND Zauberspruch Karten Generator!</h1>
-<label>CSV Datei auswählen:</label>
+<h1 class="dnd-header">Willkommen beim DND Zauberspruch Karten Generator!</h1>
+<label class="animated-button3">
+  <span></span>
+  <span></span>
+  <span></span>
+  <span></span>
+  CSV Datei auswählen
 <input #fileUpload type="file" class="fileUpload" name="fileUpload"
        (change)="this.eventService.fileUploadSubject.next($event)">
+</label>

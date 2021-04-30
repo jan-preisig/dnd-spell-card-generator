@@ -1,4 +1,4 @@
-<app-home *ngIf="spellcards.length < 1"></app-home>
+<app-popup *ngIf="!printViewEnabled" [spellcards]="spellcards"></app-popup>
 <div class="flex-container">
   <app-spell-card *ngFor="let spellcard of spellcards" [spellcard]="spellcard"></app-spell-card>
 </div>

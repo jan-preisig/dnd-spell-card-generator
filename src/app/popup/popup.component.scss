@@ -1,0 +1,16 @@
+.popup-container {
+  width: 50vw;
+  height: 50vh;
+  background-image: url('/dnd-spell-card-generator/assets/img/parchment.jpg');
+  background-size: auto;
+  padding: 10px;
+  overflow-y: scroll;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
