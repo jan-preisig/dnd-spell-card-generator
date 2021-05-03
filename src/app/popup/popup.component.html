@@ -16,6 +16,14 @@
     <option value="Waldläufer">Waldläufer</option>
     <option value="Zauberer">Zauberer</option>
   </select>
+  <br>
+  <div class="animated-button3 no-margin-sides-button" (click)="changeSelectAll()" *ngIf="spellCardService.spellcards.length > 0">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    {{showAll ? 'Alle Abwählen' : 'Alle Selektieren'}}
+  </div>
   <table>
     <tr *ngFor="let spellcard of this.spellCardService.spellcards; let i = index">
       <td>

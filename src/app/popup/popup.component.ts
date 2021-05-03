@@ -12,6 +12,7 @@ export class PopupComponent implements OnInit {
   faTimes = faTimes;
   @Input()
   popupClosed: boolean;
+  showAll = true;
 
   constructor(private eventService: EventService, public spellCardService: SpellCardService) {
   }
@@ -78,5 +79,16 @@ export class PopupComponent implements OnInit {
 
   changeSpellCardVisibility(target: any, index: number): void {
     this.spellCardService.spellcards[index].show = target.checked;
+  }
+
+  changeSelectAll(): void {
+    if (this.showAll) {
+      this.spellCardService.spellcards.forEach(card => card.show = false);
+      this.showAll = false;
+    } else {
+      this.spellCardService.spellcards.forEach(card => card.show = true);
+      this.showAll = true;
+    }
+
   }
 }
