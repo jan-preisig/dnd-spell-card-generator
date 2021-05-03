@@ -1,24 +1,34 @@
-<div class="container">
-  <h1 class="dnd-header">{{spellcard.titel}}</h1>
+<div class="container" *ngIf="spellcard.show">
+  <h1 class="dnd-header">{{spellcard.name}}</h1>
   <div class="fade-effect2 line-big"></div>
   <table class="dnd-text stat-table" *ngIf="statsAvailable()">
     <tr>
-      <td class="col1">Zeitaufwand: </td>
+      <td class="col1">Zeitaufwand:</td>
       <td class="col2">{{spellcard.zeitaufwand}}</td>
-      <td class="col3">Grad: </td>
+      <td class="col3">Grad:</td>
       <td class="col4">{{spellcard.grad}}</td>
     </tr>
     <tr>
       <td class="col1">Reichweite:</td>
       <td class="col2">{{spellcard.reichweite}}</td>
-      <td class="col3">Typ: </td>
-      <td class="col4">{{spellcard.typ}}</td>
+      <td class="col3">Typ:</td>
+      <td class="col4">{{spellcard.schule}}</td>
     </tr>
     <tr>
       <td class="col1">Wirkungsdauer:</td>
       <td class="col2">{{spellcard.wirkungsdauer}}</td>
-      <td class="col3">Klasse: </td>
-      <td class="col4">{{spellcard.klasse}}</td>
+      <td class="col3">Klasse:</td>
+      <td class="col4">
+        <img src="./assets/img/icons/artificer.png" alt="icon" width="20" *ngIf="spellcard.artificer">
+        <img src="./assets/img/icons/bard.png" alt="icon" width="20" *ngIf="spellcard.barde">
+        <img src="./assets/img/icons/druid.png" alt="icon" width="20" *ngIf="spellcard.druide">
+        <img src="./assets/img/icons/warlock.png" alt="icon" width="20" *ngIf="spellcard.hexenmeister">
+        <img src="./assets/img/icons/cleric.png" alt="icon" width="20" *ngIf="spellcard.kleriker">
+        <img src="./assets/img/icons/sorcerer.png" alt="icon" width="20" *ngIf="spellcard.magier">
+        <img src="./assets/img/icons/paladin.png" alt="icon" width="20" *ngIf="spellcard.paladin">
+        <img src="./assets/img/icons/ranger.png" alt="icon" width="20" *ngIf="spellcard.waldlaufer">
+        <img src="./assets/img/icons/wizard.png" alt="icon" width="20" *ngIf="spellcard.zauberer">
+      </td>
     </tr>
     <tr>
       <td class="col1">Komponenten:</td>
@@ -27,5 +37,5 @@
   </table>
   <div class="fade-effect2 line-small" *ngIf="statsAvailable()"></div>
 
-  <p class="dnd-text" [innerHTML]="spellcard.beschreibung"></p>
+  <p class="dnd-text" [innerHTML]="spellcard.beschreibung | safeHtml"></p>
 </div>

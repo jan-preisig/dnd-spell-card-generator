@@ -7,18 +7,22 @@ import {FormsModule} from '@angular/forms';
 import {NgxCsvParserModule} from 'ngx-csv-parser';
 import { HomeComponent } from './home/home.component';
 import { PopupComponent } from './popup/popup.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {SafeHtmlPipe} from './safe-html.pipe';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SpellCardComponent,
-    HomeComponent,
-    PopupComponent
-  ],
+    declarations: [
+        AppComponent,
+        SpellCardComponent,
+        HomeComponent,
+        PopupComponent,
+        SafeHtmlPipe,
+    ],
   imports: [
     BrowserModule,
     FormsModule,
-    NgxCsvParserModule
+    NgxCsvParserModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

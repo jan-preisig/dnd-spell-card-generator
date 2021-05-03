@@ -5,6 +5,12 @@
   background-size: auto;
   padding: 10px;
   overflow-y: scroll;
+  border: solid #630000;
+  border-radius: 5px;
+}
+
+.popup-container::-webkit-scrollbar {
+  display: none;
 }
 
 .centered {
@@ -13,4 +19,16 @@
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
+}
+
+.close-btn {
+  border: none;
+  background: none;
+  position: fixed;
+  top: 5px;
+  right: 5px;
+}
+
+.no-margin-sides-button {
+  margin: 10px 0;
 }
