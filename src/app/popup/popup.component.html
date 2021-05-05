@@ -2,8 +2,8 @@
   <button class="close-btn" (click)="closePopup()">
     <fa-icon [icon]="faTimes"></fa-icon>
   </button>
-
-  <app-home></app-home>
+  <h1 class="dnd-header">Willkommen beim DND Zauberspruch Karten Generator!</h1>
+  <p class="dnd-text-big">Verwenden sie CTRL+M um dieses Menu wieder aufzurufen</p>
   <select name="klasse" #classSelect (change)="changeSelectedClass(classSelect.value)" class="animated-button3 no-margin-sides-button">
     <option value="0">Alle</option>
     <option value="Artificer">Artificer</option>

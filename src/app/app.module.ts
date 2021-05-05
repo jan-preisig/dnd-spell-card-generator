@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { PopupComponent } from './popup/popup.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {SafeHtmlPipe} from './safe-html.pipe';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import {SafeHtmlPipe} from './safe-html.pipe';
     BrowserModule,
     FormsModule,
     NgxCsvParserModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
