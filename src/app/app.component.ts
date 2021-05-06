@@ -61,7 +61,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   processCSV(): void {
     this.http.get('./assets/spells.csv', {responseType: 'blob'}).subscribe(blob => {
-      const file = new File([blob], 'spells.csv',);
+      const file = new File([blob], 'spells.csv');
       this.ngxCsvParser.parse(file, {header: this.header, delimiter: ';'})
         .pipe().subscribe((result: Array<any>) => {
         this.spellCardService.spellcards = result;

@@ -1,5 +1,5 @@
 .popup-container {
-  width: 50vw;
+  width: 55vw;
   height: 50vh;
   background-image: url('/dnd-spell-card-generator/assets/img/parchment.jpg');
   background-size: auto;
@@ -15,10 +15,9 @@
 
 .centered {
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 10em;
+  left: 10em;
   /* bring your own prefixes */
-  transform: translate(-50%, -50%);
 }
 
 .close-btn {
@@ -31,4 +30,20 @@
 
 .no-margin-sides-button {
   margin: 10px 0;
+}
+
+.form-table {
+  width: 100%;
+  tr {
+    width: 25%;
+  }
+}
+
+.form-label {
+  font-size: 20px;
+}
+
+.icon-button:hover {
+  font-size: 14px;
+  cursor: pointer;
 }

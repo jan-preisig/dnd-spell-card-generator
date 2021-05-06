@@ -18,8 +18,7 @@ export class SpellCardComponent implements OnInit {
   }
 
   statsAvailable(): boolean {
-    return this.spellcard.zeitaufwand || this.spellcard.level || this.spellcard.reichweite || this.spellcard.schule ||
-      this.spellcard.komponenten || this.spellcard.klasse || this.spellcard.wirkungsdauer;
+    return this.spellcard.seite > 1;
   }
 
 }

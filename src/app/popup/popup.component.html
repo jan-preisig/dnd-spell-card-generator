@@ -1,23 +1,89 @@
-<div class="popup-container centered" *ngIf="!popupClosed">
+<div class="popup-container centered" *ngIf="!popupClosed" ngDraggable>
   <button class="close-btn" (click)="closePopup()">
-    <fa-icon [icon]="faTimes"></fa-icon>
+    <fa-icon [icon]="faTimes" class="icon-button"></fa-icon>
   </button>
   <h1 class="dnd-header">Willkommen beim DND Zauberspruch Karten Generator!</h1>
   <p class="dnd-text-big">Verwenden sie CTRL+M um dieses Menu wieder aufzurufen</p>
-  <select name="klasse" #classSelect (change)="changeSelectedClass(classSelect.value)" class="animated-button3 no-margin-sides-button">
-    <option value="0">Alle</option>
-    <option value="Artificer">Artificer</option>
-    <option value="Barde">Barde</option>
-    <option value="Druide">Druide</option>
-    <option value="Hexenmeister">Hexenmeister</option>
-    <option value="Kleriker">Kleriker</option>
-    <option value="Magier">Magier</option>
-    <option value="Paladin">Paladin</option>
-    <option value="Waldläufer">Waldläufer</option>
-    <option value="Zauberer">Zauberer</option>
-  </select>
+
+  <table class="form-table">
+    <tr>
+      <td>
+        <label class="dnd-header form-label">
+          Klasse
+        </label>
+      </td>
+      <td>
+        <select name="klasse" #classSelect (change)="selectedClass = classSelect.value" class="animated-button3 no-margin-sides-button dnd-select">
+          <option value="0">Alle</option>
+          <option value="Artificer">Artificer</option>
+          <option value="Barde">Barde</option>
+          <option value="Druide">Druide</option>
+          <option value="Hexenmeister">Hexenmeister</option>
+          <option value="Kleriker">Kleriker</option>
+          <option value="Magier">Magier</option>
+          <option value="Paladin">Paladin</option>
+          <option value="Waldläufer">Waldläufer</option>
+          <option value="Zauberer">Zauberer</option>
+        </select>
+      </td>
+      <td>
+        <label class="dnd-header form-label">Zauberschule:</label>
+      </td>
+      <td>
+        <select name="klasse" #schuleSelect (change)="selectedSchule = schuleSelect.value" class="animated-button3 no-margin-sides-button dnd-select">
+          <option value="alle">Alle</option>
+          <option value="Illusion">Illusion</option>
+          <option value="Bannzauber">Bannzauber</option>
+          <option value="Nekromantie">Nekromantie</option>
+          <option value="Verzauberung">Verzauberung</option>
+          <option value="Erkenntniszauber">Erkenntniszauber</option>
+          <option value="Beschwörung">Beschwörung</option>
+          <option value="Verwandlung">Verwandlung</option>
+          <option value="Hervorrufung">Hervorrufung</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label class="dnd-header form-label">Von Zauber Grad:</label>
+      </td>
+      <td>
+        <input type="number" #fromGrad (change)="fromGradValue = fromGrad.value" class="dnd-input-field">
+      </td>
+      <td>
+        <label class="dnd-header form-label">Bis Zauber Grad:</label>
+      </td>
+      <td>
+        <input type="number" #toGrad (change)="toGradValue = toGrad.value" class="dnd-input-field">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label class="dnd-header form-label">Komponenten:</label>
+      </td>
+      <td>
+        <input type="text" #formKomponenten (change)="komponentenFilter = formKomponenten.value" class="dnd-input-field">
+      </td>
+      <td>
+        <label class="dnd-header form-label">Beschreibung beinhaltet:</label>
+      </td>
+      <td>
+        <input type="text" #formBeschreibung (change)="beschreibungFilter = formBeschreibung.value" class="dnd-input-field">
+      </td>
+    </tr>
+  </table>
+
+
+
+  <label class="animated-button1 no-margin-sides-button" (click)="applySorting()">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    Filter Anwenden
+  </label>
   <br>
-  <div class="animated-button3 no-margin-sides-button" (click)="changeSelectAll()" *ngIf="spellCardService.spellcards.length > 0">
+  <div class="{{showAll ? 'animated-button1' : 'animated-button2'}} no-margin-sides-button" (click)="changeSelectAll()" *ngIf="spellCardService.spellcards.length > 0">
     <span></span>
     <span></span>
     <span></span>

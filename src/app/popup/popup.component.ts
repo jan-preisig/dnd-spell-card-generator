@@ -13,6 +13,13 @@ export class PopupComponent implements OnInit {
   @Input()
   popupClosed: boolean;
   showAll = true;
+  // filters
+  selectedClass = '0';
+  fromGradValue = '0';
+  toGradValue = '9';
+  selectedSchule = '';
+  komponentenFilter = '';
+  beschreibungFilter = '';
 
   constructor(private eventService: EventService, public spellCardService: SpellCardService) {
   }
@@ -30,51 +37,92 @@ export class PopupComponent implements OnInit {
   }
 
   applySorting(): void {
-
-  }
-
-  changeSelectedClass(value: string): void {
-    if (value === 'Artificer') {
+    this.spellCardService.spellcards.forEach(card => card.show = false);
+    if (this.selectedClass === 'Artificer') {
       this.spellCardService.spellcards.forEach(card => {
-        card.show = !!card.artificer;
+        card.show = !!card.artificer && this.advancedFilter(card);
+        this.makeAdditionalPagesVisible(card);
       });
-    } else if (value === 'Barde') {
+    } else if (this.selectedClass === 'Barde') {
       this.spellCardService.spellcards.forEach(card => {
-        card.show = !!card.barde;
+        card.show = !!card.barde && this.advancedFilter(card);
+        this.makeAdditionalPagesVisible(card);
       });
-    } else if (value === 'Druide') {
+    } else if (this.selectedClass === 'Druide') {
       this.spellCardService.spellcards.forEach(card => {
-        card.show = !!card.druide;
+        card.show = !!card.druide && this.advancedFilter(card);
+        this.makeAdditionalPagesVisible(card);
       });
-    } else if (value === 'Hexenmeister') {
+    } else if (this.selectedClass === 'Hexenmeister') {
       this.spellCardService.spellcards.forEach(card => {
-        card.show = !!card.hexenmeister;
+        card.show = !!card.hexenmeister && this.advancedFilter(card);
+        this.makeAdditionalPagesVisible(card);
       });
-    } else if (value === 'Kleriker') {
+    } else if (this.selectedClass === 'Kleriker') {
       this.spellCardService.spellcards.forEach(card => {
-        card.show = !!card.kleriker;
+        card.show = !!card.kleriker && this.advancedFilter(card);
+        this.makeAdditionalPagesVisible(card);
       });
-    } else if (value === 'Magier') {
+    } else if (this.selectedClass === 'Magier') {
       this.spellCardService.spellcards.forEach(card => {
-        card.show = !!card.magier;
+        card.show = !!card.magier && this.advancedFilter(card);
+        this.makeAdditionalPagesVisible(card);
       });
-    } else if (value === 'Paladin') {
+    } else if (this.selectedClass === 'Paladin') {
       this.spellCardService.spellcards.forEach(card => {
-        card.show = !!card.paladin;
+        card.show = !!card.paladin && this.advancedFilter(card);
+        this.makeAdditionalPagesVisible(card);
       });
-    } else if (value === 'Waldläufer') {
+    } else if (this.selectedClass === 'Waldläufer') {
       this.spellCardService.spellcards.forEach(card => {
-        card.show = !!card.waldlaufer;
+        card.show = !!card.waldlaufer && this.advancedFilter(card);
+        this.makeAdditionalPagesVisible(card);
       });
-    } else if (value === 'Zauberer') {
+    } else if (this.selectedClass === 'Zauberer') {
       this.spellCardService.spellcards.forEach(card => {
-        card.show = !!card.zauberer;
+        card.show = !!card.zauberer && this.advancedFilter(card);
+        this.makeAdditionalPagesVisible(card);
       });
-    } else if (value === '0') {
+    } else if (this.selectedClass === '0') {
       this.spellCardService.spellcards.forEach(card => {
-        card.show = true;
+        card.show = this.advancedFilter(card);
+        this.makeAdditionalPagesVisible(card);
       });
     }
+  }
+
+  private makeAdditionalPagesVisible(card): void {
+    if (card.show) {
+      this.spellCardService.spellcards.forEach(filterCard => {
+        if (filterCard.name.includes(card.name)) {
+          filterCard.show = true;
+        }
+      });
+    }
+  }
+
+  advancedFilter(card: any): boolean {
+    if (card.show) {
+      return true;
+    }
+    return card.grad >= this.fromGradValue &&
+      card.grad <= this.toGradValue &&
+      (this.selectedSchule === 'alle' || card.schule.includes(this.selectedSchule)) &&
+      this.filterKomponenten(card) &&
+      card.beschreibung.includes(this.beschreibungFilter);
+  }
+
+  private filterKomponenten(card: any): boolean {
+    let including = true;
+    if (this.komponentenFilter === '') {
+      return including;
+    }
+    this.komponentenFilter.split('').forEach(i => {
+      if (!card.komponenten.includes(i)) {
+        including = false;
+      }
+    });
+    return including;
   }
 
   changeSpellCardVisibility(target: any, index: number): void {

@@ -36,6 +36,18 @@
   font-size: 14px;
 }
 
+.dnd-input-field{
+  background: none;
+  width: 200px;
+  height: auto;
+  font-family: "Bookinsanity", serif;
+}
+
+.dnd-select {
+  option {
+    color: black;
+  }
+}
 
 //special Buttons
 .animated-button {

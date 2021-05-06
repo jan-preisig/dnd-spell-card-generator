@@ -10,6 +10,7 @@ import { PopupComponent } from './popup/popup.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {SafeHtmlPipe} from './safe-html.pipe';
 import {HttpClientModule} from '@angular/common/http';
+import {AngularDraggableModule} from 'angular2-draggable';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
     NgxCsvParserModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularDraggableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
