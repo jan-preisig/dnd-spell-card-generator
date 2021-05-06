@@ -13,7 +13,8 @@
         </label>
       </td>
       <td>
-        <select name="klasse" #classSelect (change)="selectedClass = classSelect.value" class="animated-button3 no-margin-sides-button dnd-select">
+        <select name="klasse" #classSelect (change)="selectedClass = classSelect.value"
+                class="animated-button3 no-margin-sides-button dnd-select">
           <option value="0">Alle</option>
           <option value="Artificer">Artificer</option>
           <option value="Barde">Barde</option>
@@ -30,7 +31,8 @@
         <label class="dnd-header form-label">Zauberschule:</label>
       </td>
       <td>
-        <select name="klasse" #schuleSelect (change)="selectedSchule = schuleSelect.value" class="animated-button3 no-margin-sides-button dnd-select">
+        <select name="klasse" #schuleSelect (change)="selectedSchule = schuleSelect.value"
+                class="animated-button3 no-margin-sides-button dnd-select">
           <option value="alle">Alle</option>
           <option value="Illusion">Illusion</option>
           <option value="Bannzauber">Bannzauber</option>
@@ -45,13 +47,21 @@
     </tr>
     <tr>
       <td>
-        <label class="dnd-header form-label">Von Zauber Grad:</label>
+        <label class="dnd-header form-label">Zauber Name</label>
+      </td>
+      <td>
+        <input type="text" #formName (change)="nameFilter = formName.value" class="dnd-input-field">
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label class="dnd-header form-label">Von Zauber Grad</label>
       </td>
       <td>
         <input type="number" #fromGrad (change)="fromGradValue = fromGrad.value" class="dnd-input-field">
       </td>
       <td>
-        <label class="dnd-header form-label">Bis Zauber Grad:</label>
+        <label class="dnd-header form-label">Bis Zauber Grad</label>
       </td>
       <td>
         <input type="number" #toGrad (change)="toGradValue = toGrad.value" class="dnd-input-field">
@@ -59,20 +69,33 @@
     </tr>
     <tr>
       <td>
-        <label class="dnd-header form-label">Komponenten:</label>
+        <label class="dnd-header form-label">Komponenten</label>
       </td>
       <td>
-        <input type="text" #formKomponenten (change)="komponentenFilter = formKomponenten.value" class="dnd-input-field">
+        <input type="text" #formKomponenten (change)="komponentenFilter = formKomponenten.value"
+               class="dnd-input-field">
       </td>
       <td>
-        <label class="dnd-header form-label">Beschreibung beinhaltet:</label>
+        <label class="dnd-header form-label">Beschreibung beinhaltet</label>
       </td>
       <td>
-        <input type="text" #formBeschreibung (change)="beschreibungFilter = formBeschreibung.value" class="dnd-input-field">
+        <input type="text" #formBeschreibung (change)="beschreibungFilter = formBeschreibung.value"
+               class="dnd-input-field">
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <label class="dnd-header form-label">Nur Rituale anzeigen
+          <input type="checkbox" [(ngModel)]="ritual">
+        </label>
+      </td>
+      <td colspan="2">
+        <label class="dnd-header form-label">Nur Konzentrations Zauber anzeigen
+          <input type="checkbox" [(ngModel)]="konzentration">
+        </label>
       </td>
     </tr>
   </table>
-
 
 
   <label class="animated-button1 no-margin-sides-button" (click)="applySorting()">
@@ -83,7 +106,8 @@
     Filter Anwenden
   </label>
   <br>
-  <div class="{{showAll ? 'animated-button1' : 'animated-button2'}} no-margin-sides-button" (click)="changeSelectAll()" *ngIf="spellCardService.spellcards.length > 0">
+  <div class="{{showAll ? 'animated-button1' : 'animated-button2'}} no-margin-sides-button" (click)="changeSelectAll()"
+       *ngIf="spellCardService.spellcards.length > 0">
     <span></span>
     <span></span>
     <span></span>

@@ -6,7 +6,10 @@
       <td class="col1">Zeitaufwand:</td>
       <td class="col2">{{spellcard.zeitaufwand}}</td>
       <td class="col3">Grad:</td>
-      <td class="col4">{{spellcard.grad}}</td>
+      <td class="col4">
+        {{spellcard.grad}}
+        <span *ngIf="spellcard.ritual === 'Ritual'">(Ritual)</span>
+      </td>
     </tr>
     <tr>
       <td class="col1">Reichweite:</td>

@@ -20,6 +20,9 @@ export class PopupComponent implements OnInit {
   selectedSchule = '';
   komponentenFilter = '';
   beschreibungFilter = '';
+  ritual = false;
+  konzentration = false;
+  nameFilter = '';
 
   constructor(private eventService: EventService, public spellCardService: SpellCardService) {
   }
@@ -105,11 +108,14 @@ export class PopupComponent implements OnInit {
     if (card.show) {
       return true;
     }
-    return card.grad >= this.fromGradValue &&
-      card.grad <= this.toGradValue &&
+    return card.grad >= Number(this.fromGradValue) &&
+      card.grad <= (this.toGradValue ? Number(this.toGradValue) : 9) &&
       (this.selectedSchule === 'alle' || card.schule.includes(this.selectedSchule)) &&
       this.filterKomponenten(card) &&
-      card.beschreibung.includes(this.beschreibungFilter);
+      (this.nameFilter === '' || card.name.toLowerCase().includes(this.nameFilter.toLowerCase())) &&
+      card.beschreibung.toLowerCase().includes(this.beschreibungFilter.toLowerCase()) &&
+      (!this.ritual || card.ritual.includes('Ritual')) &&
+      (!this.konzentration || card.konz.includes('Konz.'));
   }
 
   private filterKomponenten(card: any): boolean {
