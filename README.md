@@ -7,6 +7,10 @@ git add dist
 git commit -m ""
 git subtree push --prefix dist/dnd-spell-card-generator/ origin gh-pages
 ```
+For Force Push use
+```cmd
+git push origin `git subtree split --prefix dist/dnd-spell-card-generator/ master`:gh-pages --force
+```
 
 ## Serve Locally
 ```cmd
