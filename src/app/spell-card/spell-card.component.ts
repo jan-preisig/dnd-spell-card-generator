@@ -18,7 +18,7 @@ export class SpellCardComponent implements OnInit {
   }
 
   statsAvailable(): boolean {
-    return this.spellcard.seite > 1;
+    return !(this.spellcard.page > 1);
   }
 
 }

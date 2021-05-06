@@ -74,6 +74,9 @@ export class AppComponent implements OnInit, OnDestroy {
             this.manualLinebrak(card, index, pageNr);
           }
           let maxlength = 1200 - (countLinebreaks * 100);
+          if (card.page > 1) {
+            maxlength += 500;
+          }
           maxlength = card.beschreibung.indexOf(' ', maxlength);
           const descPage2 = '...' + card.beschreibung.substr(maxlength, card.beschreibung.length - maxlength);
           console.log(card.name);
