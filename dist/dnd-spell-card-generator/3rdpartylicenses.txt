@@ -111,6 +111,9 @@ Awesome, nor vice versa. **Please do not use brand logos for any purpose except
 to represent the company, product, or service to which they refer.**
 
 
+angular2-draggable
+MIT
+
 css-loader
 MIT
 Copyright JS Foundation and other contributors
