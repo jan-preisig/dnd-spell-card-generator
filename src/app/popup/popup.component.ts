@@ -11,6 +11,7 @@ import {SpellCardService} from '../services/spell-card.service';
 export class PopupComponent implements OnInit {
   faTimes = faTimes;
   faCheck = faCheck;
+  private subscriptions = [];
   @Input()
   popupClosed: boolean;
   showAll = true;
@@ -29,6 +30,9 @@ export class PopupComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.subscriptions.push(this.eventService.onEnterSubject.subscribe(() => {
+      this.applySorting();
+    }));
   }
 
   @HostListener('window:keydown.control.m', ['$event'])

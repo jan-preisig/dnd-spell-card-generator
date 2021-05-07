@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {NgxCsvParser, NgxCSVParserError} from 'ngx-csv-parser';
 import {EventService} from './services/event.service';
 import {Subscription} from 'rxjs';
@@ -15,10 +15,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(private ngxCsvParser: NgxCsvParser, private eventService: EventService, public spellCardService: SpellCardService, private http: HttpClient) {
     this.subscriptions.push(eventService.fileUploadSubject.subscribe(event => this.processCSV()));
-    this.subscriptions.push(eventService.onEnterSubject.subscribe(() => {
-      this.clearSpells();
-      this.popupClosed = false;
-    }));
   }
 
   title = 'dnd-spell-card-generator';
@@ -65,6 +61,7 @@ export class AppComponent implements OnInit, OnDestroy {
       this.ngxCsvParser.parse(file, {header: this.header, delimiter: ';'})
         .pipe().subscribe((result: Array<any>) => {
         this.spellCardService.spellcards = result;
+        console.log(this.spellCardService.spellcards);
         for (let index = 0; index < this.spellCardService.spellcards.length; index++) {
           const card = this.spellCardService.spellcards[index];
           card.show = true;
@@ -94,7 +91,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private autoLinebreak(index: number, card, pageNr, descPage2: string, maxlength: number): void {
     let newSpellCard = {
       name: (card.mainTitle ? card.mainTitle : card.name) + ' ' + (pageNr + 1),
-      mainTitle: card.name,
+      mainTitle: (card.mainTitle ? card.mainTitle : card.name),
       beschreibung: descPage2,
       page: (pageNr + 1)
     };
@@ -109,7 +106,7 @@ export class AppComponent implements OnInit, OnDestroy {
     for (let i = 1; i < splitted.length; i++) {
       let newSpellCard = {
         name: (card.mainTitle ? card.mainTitle : card.name) + ' ' + (pageNr + i),
-        mainTitle: card.name,
+        mainTitle: (card.mainTitle ? card.mainTitle : card.name),
         beschreibung: splitted[i],
         page: (pageNr + i)
       };
