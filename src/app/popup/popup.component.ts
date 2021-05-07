@@ -21,7 +21,7 @@ export class PopupComponent implements OnInit {
   komponentenFilter = '';
   beschreibungFilter = '';
   ritual = false;
-  konzentration = false;
+  konzentration = 'alle';
   nameFilter = '';
 
   constructor(private eventService: EventService, public spellCardService: SpellCardService) {
@@ -115,7 +115,7 @@ export class PopupComponent implements OnInit {
       (this.nameFilter === '' || card.name.toLowerCase().includes(this.nameFilter.toLowerCase())) &&
       card.beschreibung.toLowerCase().includes(this.beschreibungFilter.toLowerCase()) &&
       (!this.ritual || card.ritual.includes('Ritual')) &&
-      (!this.konzentration || card.konz.includes('Konz.'));
+      (this.konzentration.includes('alle') || (this.konzentration.includes('true') ? card.konz.includes('Konz.') : !card.konz.includes('Konz.')));
   }
 
   private filterKomponenten(card: any): boolean {

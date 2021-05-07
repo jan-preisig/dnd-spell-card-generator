@@ -601,5 +601,41 @@
     transform: translateY(100%);
   }
 }
+
+//animateSelect
+.animated-button3-select {
+  background: linear-gradient(-30deg, #0b0b3d 50%, #08082b 50%);
+  padding: 10px 20px;
+  margin: 2px;
+  display: inline-block;
+  -webkit-transform: translate(0%, 0%);
+  transform: translate(0%, 0%);
+  overflow: hidden;
+  color: #d4d4f7;
+  font-size: 16px;
+  letter-spacing: 2.5px;
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  -webkit-box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.animated-button3-select::before {
+  content: '';
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #8585ad;
+  opacity: 0;
+  -webkit-transition: .2s opacity ease-in-out;
+  transition: .2s opacity ease-in-out;
+}
+
+.animated-button3-select:hover::before {
+  opacity: 0.2;
+}
 /*# sourceMappingURL=button.css.map */
 

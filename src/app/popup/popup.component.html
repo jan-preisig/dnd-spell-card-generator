@@ -14,7 +14,7 @@
       </td>
       <td>
         <select name="klasse" #classSelect (change)="selectedClass = classSelect.value"
-                class="animated-button3 no-margin-sides-button dnd-select">
+                class="animated-button3-select dnd-select">
           <option value="0">Alle</option>
           <option value="Artificer">Artificer</option>
           <option value="Barde">Barde</option>
@@ -32,7 +32,7 @@
       </td>
       <td>
         <select name="klasse" #schuleSelect (change)="selectedSchule = schuleSelect.value"
-                class="animated-button3 no-margin-sides-button dnd-select">
+                class="animated-button3-select dnd-select">
           <option value="alle">Alle</option>
           <option value="Illusion">Illusion</option>
           <option value="Bannzauber">Bannzauber</option>
@@ -51,6 +51,18 @@
       </td>
       <td>
         <input type="text" #formName (change)="nameFilter = formName.value" class="dnd-input-field">
+      </td>
+      <td>
+        <label class="dnd-header form-label">Konzentration</label>
+      </td>
+      <td>
+        <select name="klasse" #konz (change)="konzentration = konz.value"
+                class="animated-button3-select dnd-select">
+          <option value="alle">Alle</option>
+          <option value="true">Konzentration</option>
+          <option value="false">Keine Konzentration</option>
+        </select>
+
       </td>
     </tr>
     <tr>
@@ -89,11 +101,7 @@
           <input type="checkbox" [(ngModel)]="ritual">
         </label>
       </td>
-      <td colspan="2">
-        <label class="dnd-header form-label">Nur Konzentrations Zauber anzeigen
-          <input type="checkbox" [(ngModel)]="konzentration">
-        </label>
-      </td>
+      <td colspan="2"></td>
     </tr>
   </table>
 
