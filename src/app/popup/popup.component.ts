@@ -1,5 +1,5 @@
 import {Component, HostListener, Input, OnInit} from '@angular/core';
-import {faTimes} from '@fortawesome/free-solid-svg-icons';
+import {faCheck, faTimes} from '@fortawesome/free-solid-svg-icons';
 import {EventService} from '../services/event.service';
 import {SpellCardService} from '../services/spell-card.service';
 
@@ -10,6 +10,7 @@ import {SpellCardService} from '../services/spell-card.service';
 })
 export class PopupComponent implements OnInit {
   faTimes = faTimes;
+  faCheck = faCheck;
   @Input()
   popupClosed: boolean;
   showAll = true;
@@ -20,9 +21,9 @@ export class PopupComponent implements OnInit {
   selectedSchule = '';
   komponentenFilter = '';
   beschreibungFilter = '';
-  ritual = false;
   konzentration = 'alle';
   nameFilter = '';
+  ritualFilter = '';
 
   constructor(private eventService: EventService, public spellCardService: SpellCardService) {
   }
@@ -114,7 +115,7 @@ export class PopupComponent implements OnInit {
       this.filterKomponenten(card) &&
       (this.nameFilter === '' || card.name.toLowerCase().includes(this.nameFilter.toLowerCase())) &&
       card.beschreibung.toLowerCase().includes(this.beschreibungFilter.toLowerCase()) &&
-      (!this.ritual || card.ritual.includes('Ritual')) &&
+      (this.ritualFilter.includes('alle') || (this.ritualFilter.includes('true') ? card.ritual.includes('Ritual') : !card.konz.includes('Ritual'))) &&
       (this.konzentration.includes('alle') || (this.konzentration.includes('true') ? card.konz.includes('Konz.') : !card.konz.includes('Konz.')));
   }
 
