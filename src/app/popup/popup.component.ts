@@ -1,4 +1,4 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild} from '@angular/core';
 import {faCheck, faTimes} from '@fortawesome/free-solid-svg-icons';
 import {EventService} from '../services/event.service';
 import {SpellCardService} from '../services/spell-card.service';
@@ -128,16 +128,16 @@ export class PopupComponent implements OnInit {
   }
 
   private filterKomponenten(card: any): boolean {
-    let including = true;
-    if (this.komponentenFilter === '') {
-      return including;
-    }
-    this.komponentenFilter.split('').forEach(i => {
-      if (!card.komponenten.includes(i)) {
-        including = false;
+    if (this.komponentenFilter === '0') {
+      return true;
+    } else if (this.komponentenFilter === 'gp') {
+      if (card.komponenten.includes(this.komponentenFilter)) {
+        console.log('GP: ', card);
+        return true;
       }
-    });
-    return including;
+    } else {
+      return card.komponenten === this.komponentenFilter;
+    }
   }
 
   changeSpellCardVisibility(target: any, index: number): void {

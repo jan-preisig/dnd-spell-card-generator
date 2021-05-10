@@ -1,8 +1,8 @@
-<div class="popup-container centered" *ngIf="!popupClosed" ngDraggable>
+<div class="popup-container centered" *ngIf="!popupClosed" ngDraggable [handle]="dragHandle">
   <button class="close-btn" (click)="closePopup()">
     <fa-icon [icon]="faTimes" class="icon-button"></fa-icon>
   </button>
-  <h1 class="dnd-header popup-title">Willkommen beim D&D Zauberkartengenerator</h1>
+  <h1 #dragHandle class="dnd-header popup-title">Willkommen beim D&D Zauberkartengenerator</h1>
   <p class="dnd-text-big">Verwenden sie CTRL+M um dieses Menu wieder aufzurufen</p>
   <table class="classTable centered-text">
     <thead>
@@ -63,7 +63,7 @@
       <td>
         <select name="klasse" #classSelect (change)="selectedClass = classSelect.value"
                 class="animated-button-blue-select dnd-select">
-          <option value="0">Alle</option>
+          <option value="0" selected>Alle</option>
           <option value="Artificer">Artificer</option>
           <option value="Barde">Barde</option>
           <option value="Druide">Druide</option>
@@ -78,23 +78,20 @@
     </tr>
     <tr>
       <td>
-        <label class="dnd-header form-label">
-          Klasse
-        </label>
+        <label class="dnd-header form-label">Zauberschule:</label>
       </td>
       <td>
-        <select name="klasse" #classSelect (change)="selectedClass = classSelect.value"
+        <select name="klasse" #schuleSelect (change)="selectedSchule = schuleSelect.value"
                 class="animated-button-blue-select dnd-select">
-          <option value="0">Alle</option>
-          <option value="Artificer">Artificer</option>
-          <option value="Barde">Barde</option>
-          <option value="Druide">Druide</option>
-          <option value="Hexenmeister">Hexenmeister</option>
-          <option value="Kleriker">Kleriker</option>
-          <option value="Magier">Magier</option>
-          <option value="Paladin">Paladin</option>
-          <option value="Waldläufer">Waldläufer</option>
-          <option value="Zauberer">Zauberer</option>
+          <option value="alle">Alle</option>
+          <option value="Illusion">Illusion</option>
+          <option value="Bannzauber">Bannzauber</option>
+          <option value="Nekromantie">Nekromantie</option>
+          <option value="Verzauberung">Verzauberung</option>
+          <option value="Erkenntniszauber">Erkenntniszauber</option>
+          <option value="Beschwörung">Beschwörung</option>
+          <option value="Verwandlung">Verwandlung</option>
+          <option value="Hervorrufung">Hervorrufung</option>
         </select>
       </td>
     </tr>
@@ -105,7 +102,7 @@
       <td>
         <select name="klasse" #ritual (change)="ritualFilter = ritual.value"
                 class="animated-button-blue-select dnd-select">
-          <option value="alle">Alle</option>
+          <option value="alle" selected>Alle</option>
           <option value="true">Ritual</option>
           <option value="false">Kein Ritual</option>
         </select>
@@ -118,7 +115,7 @@
       <td>
         <select name="klasse" #konz (change)="konzentration = konz.value"
                 class="animated-button-blue-select dnd-select">
-          <option value="alle">Alle</option>
+          <option value="alle" selected>Alle</option>
           <option value="true">Konzentration</option>
           <option value="false">Keine Konzentration</option>
         </select>
@@ -132,7 +129,7 @@
         Von:
         <select name="gradVon" #fromGrad (change)="fromGradValue = fromGrad.value"
                 class="animated-button-blue-select dnd-select-small">
-          <option value="0">0</option>
+          <option value="0" selected>0</option>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -155,17 +152,34 @@
           <option value="6">6</option>
           <option value="7">7</option>
           <option value="8">8</option>
-          <option value="9">9</option>
+          <option value="9" selected>9</option>
         </select>
       </td>
     </tr>
     <tr>
       <td>
-        <label class="dnd-header form-label">Komponenten</label>
+        <label class="dnd-header form-label" for="formKomponenten">Komponenten</label>
       </td>
       <td>
-        <input type="text" #formKomponenten (change)="komponentenFilter = formKomponenten.value"
-               class="dnd-input-field">
+        <select id="formKomponenten" name="formKomponenten" #formKomponenten (change)="komponentenFilter = formKomponenten.value"
+                class="animated-button-blue-select dnd-select">
+          <option value="0" selected>Alle</option>
+          <option value="V">V</option>
+          <option value="G">G</option>
+          <option value="M">M</option>
+          <option value="gp">gp</option>
+          <option value="VG">VG</option>
+          <option value="VM">VM</option>
+          <option value="GM">GM</option>
+          <option value="VGM">VGM</option>
+          <option value="Vgp">Vgp</option>
+          <option value="Ggp">Ggp</option>
+          <option value="Mgp">Mgp</option>
+          <option value="VGgp">VGgp</option>
+          <option value="VMgp">VMgp</option>
+          <option value="GMgp">GMgp</option>
+          <option value="VGMgp">VGMgp</option>
+        </select>
       </td>
     </tr>
     <tr>

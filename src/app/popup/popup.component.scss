@@ -47,6 +47,11 @@
 
 .popup-title {
   font-size: 22px;
+  cursor: grab;
+}
+
+.popup-title:active {
+  cursor: grabbing;
 }
 
 .classTable {
@@ -77,4 +82,8 @@
 
 .centered-text {
   text-align: center;
+}
+
+.dnd-hidden {
+  visibility: hidden;
 }

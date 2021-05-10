@@ -1,4 +1,4 @@
-import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {NgxCsvParser, NgxCSVParserError} from 'ngx-csv-parser';
 import {EventService} from './services/event.service';
 import {Subscription} from 'rxjs';
@@ -14,9 +14,10 @@ import {HttpClient} from '@angular/common/http';
 export class AppComponent implements OnInit, OnDestroy {
 
   constructor(private ngxCsvParser: NgxCsvParser, private eventService: EventService, public spellCardService: SpellCardService, private http: HttpClient) {
-    this.subscriptions.push(eventService.fileUploadSubject.subscribe(event => this.processCSV()));
+    this.subscriptions.push(eventService.fileUploadSubject.subscribe(event => this.processLocalAssetsCsv()));
   }
-
+  @ViewChild('fileInput')
+  fileInput: ElementRef;
   title = 'dnd-spell-card-generator';
   spellcards = [];
   header = true;
@@ -38,7 +39,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.processCSV();
+    this.processLocalAssetsCsv();
   }
 
   @HostListener('window:keyup.enter', ['$event'])
@@ -51,40 +52,51 @@ export class AppComponent implements OnInit, OnDestroy {
     this.eventService.onPopupClosedChange.next(true);
   }
 
-  private clearSpells(): void {
-    this.spellCardService.spellcards = [];
+  @HostListener('window:keydown.control.u', ['$event'])
+  uploadFile($event): void {
+    $event.preventDefault();
+    this.fileInput.nativeElement.click();
   }
 
-  processCSV(): void {
+  processUploadedCsv($event: any): void {
+    const file = $event.target.files[0];
+    this.processCSV(file);
+  }
+
+  processLocalAssetsCsv(): void {
     this.http.get('./assets/spells.csv', {responseType: 'blob'}).subscribe(blob => {
       const file = new File([blob], 'spells.csv');
-      this.ngxCsvParser.parse(file, {header: this.header, delimiter: ';'})
-        .pipe().subscribe((result: Array<any>) => {
-        this.spellCardService.spellcards = result;
-        console.log(this.spellCardService.spellcards);
-        for (let index = 0; index < this.spellCardService.spellcards.length; index++) {
-          const card = this.spellCardService.spellcards[index];
-          card.show = true;
-          const countLinebreaks = (card.beschreibung.match('<br>') || []).length;
-          const pageNr = card.page ? card.page : 1;
-          if (card.beschreibung.includes('-p2-')) {
-            this.manualLinebrak(card, index, pageNr);
-          }
-          let maxlength = 1200 - (countLinebreaks * 100);
-          if (card.page > 1) {
-            maxlength += 500;
-          }
-          maxlength = card.beschreibung.indexOf(' ', maxlength);
-          const descPage2 = '...' + card.beschreibung.substr(maxlength, card.beschreibung.length - maxlength);
-          console.log(card.name);
-          if (card.beschreibung.length > maxlength && descPage2.length > 10) {
-            console.log('linebreak', card.name);
-            this.autoLinebreak(index, card, pageNr, descPage2, maxlength);
-          }
+      this.processCSV(file);
+    });
+  }
+
+  processCSV(file: File): void {
+    this.ngxCsvParser.parse(file, {header: this.header, delimiter: ';'})
+      .pipe().subscribe((result: Array<any>) => {
+      this.spellCardService.spellcards = result;
+      console.log(this.spellCardService.spellcards);
+      for (let index = 0; index < this.spellCardService.spellcards.length; index++) {
+        const card = this.spellCardService.spellcards[index];
+        card.show = true;
+        const countLinebreaks = (card.beschreibung.match('<br>') || []).length;
+        const pageNr = card.page ? card.page : 1;
+        if (card.beschreibung.includes('-p2-')) {
+          this.manualLinebrak(card, index, pageNr);
         }
-      }, (error: NgxCSVParserError) => {
-        console.log('Error', error);
-      });
+        let maxlength = 1200 - (countLinebreaks * 100);
+        if (card.page > 1) {
+          maxlength += 500;
+        }
+        maxlength = card.beschreibung.indexOf(' ', maxlength);
+        const descPage2 = '...' + card.beschreibung.substr(maxlength, card.beschreibung.length - maxlength);
+        console.log(card.name);
+        if (card.beschreibung.length > maxlength && descPage2.length > 10) {
+          console.log('linebreak', card.name);
+          this.autoLinebreak(index, card, pageNr, descPage2, maxlength);
+        }
+      }
+    }, (error: NgxCSVParserError) => {
+      console.log('Error', error);
     });
   }
 

@@ -1,4 +1,5 @@
 <app-popup [popupClosed]="popupClosed"></app-popup>
+<input type="file" id="fileInput" #fileInput hidden (change)="processUploadedCsv($event)">
 <div class="flex-container">
   <app-spell-card *ngFor="let spellcard of this.spellCardService.spellcards" [spellcard]="spellcard"></app-spell-card>
 </div>
