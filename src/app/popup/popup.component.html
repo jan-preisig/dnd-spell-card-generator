@@ -2,8 +2,48 @@
   <button class="close-btn" (click)="closePopup()">
     <fa-icon [icon]="faTimes" class="icon-button"></fa-icon>
   </button>
-  <h1 class="dnd-header">Willkommen beim DND Zauberspruch Karten Generator!</h1>
+  <h1 class="dnd-header popup-title">Willkommen beim D&D Zauberkartengenerator</h1>
   <p class="dnd-text-big">Verwenden sie CTRL+M um dieses Menu wieder aufzurufen</p>
+  <table class="classTable centered-text">
+    <thead>
+    <tr>
+      <th>Klasse</th>
+      <th>Icon</th>
+      <th>Klasse</th>
+      <th>Icon</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Artificer</td>
+      <td><img src="./assets/img/icons/artificer.png" alt="icon" width="20"></td>
+      <td>Barde</td>
+      <td><img src="./assets/img/icons/bard.png" alt="icon" width="20"></td>
+    </tr>
+    <tr>
+      <td>Druide</td>
+      <td><img src="./assets/img/icons/druid.png" alt="icon" width="20"></td>
+      <td>Hexenmeister</td>
+      <td><img src="./assets/img/icons/warlock.png" alt="icon" width="20"></td>
+    </tr>
+    <tr>
+      <td>Kleriker</td>
+      <td><img src="./assets/img/icons/cleric.png" alt="icon" width="20"></td>
+      <td>Magier</td>
+      <td><img src="./assets/img/icons/sorcerer.png" alt="icon" width="20"></td>
+    </tr>
+    <tr>
+      <td>Paladin</td>
+      <td><img src="./assets/img/icons/paladin.png" alt="icon" width="20"></td>
+      <td>Waldläufer</td>
+      <td><img src="./assets/img/icons/ranger.png" alt="icon" width="20"></td>
+    </tr>
+    <tr>
+      <td>Zauberer</td>
+      <td><img src="./assets/img/icons/wizard.png" alt="icon" width="20"></td>
+    </tr>
+    </tbody>
+  </table>
 
   <table class="form-table">
     <tr>
@@ -22,7 +62,7 @@
       </td>
       <td>
         <select name="klasse" #classSelect (change)="selectedClass = classSelect.value"
-                class="animated-button3-select dnd-select">
+                class="animated-button-blue-select dnd-select">
           <option value="0">Alle</option>
           <option value="Artificer">Artificer</option>
           <option value="Barde">Barde</option>
@@ -35,21 +75,26 @@
           <option value="Zauberer">Zauberer</option>
         </select>
       </td>
+    </tr>
+    <tr>
       <td>
-        <label class="dnd-header form-label">Zauberschule:</label>
+        <label class="dnd-header form-label">
+          Klasse
+        </label>
       </td>
       <td>
-        <select name="klasse" #schuleSelect (change)="selectedSchule = schuleSelect.value"
-                class="animated-button3-select dnd-select">
-          <option value="alle">Alle</option>
-          <option value="Illusion">Illusion</option>
-          <option value="Bannzauber">Bannzauber</option>
-          <option value="Nekromantie">Nekromantie</option>
-          <option value="Verzauberung">Verzauberung</option>
-          <option value="Erkenntniszauber">Erkenntniszauber</option>
-          <option value="Beschwörung">Beschwörung</option>
-          <option value="Verwandlung">Verwandlung</option>
-          <option value="Hervorrufung">Hervorrufung</option>
+        <select name="klasse" #classSelect (change)="selectedClass = classSelect.value"
+                class="animated-button-blue-select dnd-select">
+          <option value="0">Alle</option>
+          <option value="Artificer">Artificer</option>
+          <option value="Barde">Barde</option>
+          <option value="Druide">Druide</option>
+          <option value="Hexenmeister">Hexenmeister</option>
+          <option value="Kleriker">Kleriker</option>
+          <option value="Magier">Magier</option>
+          <option value="Paladin">Paladin</option>
+          <option value="Waldläufer">Waldläufer</option>
+          <option value="Zauberer">Zauberer</option>
         </select>
       </td>
     </tr>
@@ -59,37 +104,59 @@
       </td>
       <td>
         <select name="klasse" #ritual (change)="ritualFilter = ritual.value"
-                class="animated-button3-select dnd-select">
+                class="animated-button-blue-select dnd-select">
           <option value="alle">Alle</option>
           <option value="true">Ritual</option>
           <option value="false">Kein Ritual</option>
         </select>
       </td>
+    </tr>
+    <tr>
       <td>
         <label class="dnd-header form-label">Konzentration</label>
       </td>
       <td>
         <select name="klasse" #konz (change)="konzentration = konz.value"
-                class="animated-button3-select dnd-select">
+                class="animated-button-blue-select dnd-select">
           <option value="alle">Alle</option>
           <option value="true">Konzentration</option>
           <option value="false">Keine Konzentration</option>
         </select>
-
       </td>
     </tr>
     <tr>
       <td>
-        <label class="dnd-header form-label">Von Zauber Grad</label>
+        <label class="dnd-header form-label">Zauber Grad</label>
       </td>
       <td>
-        <input type="number" #fromGrad (change)="fromGradValue = fromGrad.value" class="dnd-input-field">
-      </td>
-      <td>
-        <label class="dnd-header form-label">Bis Zauber Grad</label>
-      </td>
-      <td>
-        <input type="number" #toGrad (change)="toGradValue = toGrad.value" class="dnd-input-field">
+        Von:
+        <select name="gradVon" #fromGrad (change)="fromGradValue = fromGrad.value"
+                class="animated-button-blue-select dnd-select-small">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+        </select>
+        Bis:
+        <select name="gradVon" #toGrad (change)="toGradValue = toGrad.value"
+                class="animated-button-blue-select dnd-select-small">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+        </select>
       </td>
     </tr>
     <tr>
@@ -100,6 +167,8 @@
         <input type="text" #formKomponenten (change)="komponentenFilter = formKomponenten.value"
                class="dnd-input-field">
       </td>
+    </tr>
+    <tr>
       <td>
         <label class="dnd-header form-label">Beschreibung beinhaltet</label>
       </td>
@@ -110,8 +179,7 @@
     </tr>
   </table>
 
-
-  <label class="animated-button1 no-margin-sides-button" (click)="applySorting()">
+  <label class="animated-button1 no-margin-sides-button dnd-button" (click)="applySorting()">
     <span></span>
     <span></span>
     <span></span>
@@ -119,30 +187,37 @@
     Filter Anwenden
   </label>
   <br>
-  <div class="{{showAll ? 'animated-button1' : 'animated-button2'}} no-margin-sides-button" (click)="changeSelectAll()"
-       *ngIf="spellCardService.spellcards.length > 0">
+  <label class="{{showAll ? 'animated-button1' : 'animated-button2'}} no-margin-sides-button dnd-button"
+         (click)="changeSelectAll()"
+         *ngIf="spellCardService.spellcards.length > 0">
     <span></span>
     <span></span>
     <span></span>
     <span></span>
     {{showAll ? 'Alle Abwählen' : 'Alle Selektieren'}}
-  </div>
+  </label>
   <table class="classTable">
     <thead>
-      <tr>
-        <td class="dnd-header">Zauber Name</td>
-        <td>
-          <fa-icon [icon]="faCheck"></fa-icon>
-        </td>
-      </tr>
-    </thead>
-    <tr *ngFor="let spellcard of this.spellCardService.spellcards; let i = index">
+    <tr>
+      <td class="dnd-header">Zauber Name</td>
       <td>
-        {{spellcard.name}}
-      </td>
-      <td>
-        <input type="checkbox" [(ngModel)]="spellcard.show">
+        <fa-icon [icon]="faCheck"></fa-icon>
       </td>
     </tr>
+    </thead>
+    <ng-container *ngFor="let spellcard of this.spellCardService.spellcards; let i = index">
+      <tr *ngIf="checkPageOne(spellcard)">
+
+        <td>
+          <label for="checkbox{{i}}">
+            {{spellcard.name}}
+          </label>
+        </td>
+        <td>
+          <input id="checkbox{{i}}" type="checkbox" [(ngModel)]="spellcard.show"
+                 (ngModelChange)="changeCardSelected(spellcard)">
+        </td>
+      </tr>
+    </ng-container>
   </table>
 </div>

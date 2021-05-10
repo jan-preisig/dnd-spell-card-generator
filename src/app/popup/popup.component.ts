@@ -33,11 +33,15 @@ export class PopupComponent implements OnInit {
     this.subscriptions.push(this.eventService.onEnterSubject.subscribe(() => {
       this.applySorting();
     }));
+    this.subscriptions.push(this.eventService.onPopupClosedChange.subscribe(value => {
+      this.popupClosed = value;
+      console.log('close popup');
+    }));
   }
 
   @HostListener('window:keydown.control.m', ['$event'])
   openPopup(): void {
-    this.popupClosed = false;
+    this.popupClosed = !this.popupClosed;
   }
 
   closePopup(): void {
@@ -148,6 +152,17 @@ export class PopupComponent implements OnInit {
       this.spellCardService.spellcards.forEach(card => card.show = true);
       this.showAll = true;
     }
+  }
 
+  changeCardSelected(spellcard: any): void {
+    this.spellCardService.spellcards.forEach(card => {
+      if (card.name.includes(spellcard.name)) {
+        card.show = spellcard.show;
+      }
+    });
+  }
+
+  checkPageOne(spellcard: any): boolean {
+    return !(Number(spellcard.page) > 1);
   }
 }

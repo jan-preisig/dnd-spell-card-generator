@@ -5,19 +5,19 @@ import {AppComponent} from './app.component';
 import {SpellCardComponent} from './spell-card/spell-card.component';
 import {FormsModule} from '@angular/forms';
 import {NgxCsvParserModule} from 'ngx-csv-parser';
-import { PopupComponent } from './popup/popup.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {PopupComponent} from './popup/popup.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {SafeHtmlPipe} from './safe-html.pipe';
 import {HttpClientModule} from '@angular/common/http';
 import {AngularDraggableModule} from 'angular2-draggable';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        SpellCardComponent,
-        PopupComponent,
-        SafeHtmlPipe,
-    ],
+  declarations: [
+    AppComponent,
+    SpellCardComponent,
+    SafeHtmlPipe,
+    PopupComponent,
+  ],
   imports: [
     BrowserModule,
     FormsModule,

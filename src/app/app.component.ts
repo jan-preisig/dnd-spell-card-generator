@@ -48,7 +48,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   @HostListener('window:keydown.control.p', ['$event'])
   onPrint($event: any): void {
-    this.popupClosed = true;
+    this.eventService.onPopupClosedChange.next(true);
   }
 
   private clearSpells(): void {

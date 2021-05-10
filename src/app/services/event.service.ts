@@ -7,7 +7,7 @@ import {BehaviorSubject, Subject} from 'rxjs';
 export class EventService {
   fileUploadSubject: Subject<any> = new Subject<any>();
   onEnterSubject: Subject<any> = new Subject<any>();
-  onPopupClosedChange: Subject<any> = new Subject<any>();
+  onPopupClosedChange: Subject<boolean> = new Subject<boolean>();
   applySorting: Subject<any> = new Subject<any>();
 
   constructor() {

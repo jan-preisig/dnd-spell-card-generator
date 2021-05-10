@@ -1,16 +1,12 @@
 .popup-container {
-  width: 55vw;
+  width: 500px;
   height: 50vh;
   background-image: url('/dnd-spell-card-generator/assets/img/parchment.jpg');
   background-size: auto;
   padding: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
   border: solid #630000;
   border-radius: 5px;
-}
-
-.popup-container::-webkit-scrollbar {
-  display: none;
 }
 
 .centered {
@@ -49,7 +45,12 @@
   cursor: pointer;
 }
 
+.popup-title {
+  font-size: 22px;
+}
+
 .classTable {
+  width: 470px;
   margin-left: 10px;
   margin-top: 25px;
   margin-bottom: 40px;
@@ -64,12 +65,16 @@
   border-image-source: url('/dnd-spell-card-generator/assets/img/dnd-table-background.png');
   border-image-width: 47px;
 
-  tr:nth-child(even) {
-    background: #E3EAC8;
-    border: solid #E3EAC8;
+    tr:nth-child(even) {
+        background: #E3EAC8;
+        border: solid #E3EAC8;
+      }
+
+    tr:nth-child(odd) {
+        background: #ffffff;
+      }
   }
 
-  tr:nth-child(odd) {
-    background: #ffffff;
-  }
+.centered-text {
+  text-align: center;
 }
