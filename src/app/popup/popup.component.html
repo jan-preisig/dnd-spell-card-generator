@@ -4,6 +4,8 @@
   </button>
   <h1 #dragHandle class="dnd-header popup-title">Willkommen beim D&D Zauberkartengenerator</h1>
   <p class="dnd-text-big">Verwenden sie CTRL+M um dieses Menu wieder aufzurufen</p>
+  <p class="dnd-header">Unterstütze unsere langen D&D Nächte indem du einen
+  <a href="https://www.buymeacoffee.com/priisig" target="_blank">Kaffe spendest</a>.</p>
   <table class="classTable centered-text">
     <thead>
     <tr>
@@ -161,7 +163,8 @@
         <label class="dnd-header form-label" for="formKomponenten">Komponenten</label>
       </td>
       <td>
-        <select id="formKomponenten" name="formKomponenten" #formKomponenten (change)="komponentenFilter = formKomponenten.value"
+        <select id="formKomponenten" name="formKomponenten" #formKomponenten
+                (change)="komponentenFilter = formKomponenten.value"
                 class="animated-button-blue-select dnd-select">
           <option value="0" selected>Alle</option>
           <option value="V">V</option>

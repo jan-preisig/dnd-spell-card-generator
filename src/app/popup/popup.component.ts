@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, HostListener, Input, OnInit} from '@angular/core';
 import {faCheck, faTimes} from '@fortawesome/free-solid-svg-icons';
 import {EventService} from '../services/event.service';
 import {SpellCardService} from '../services/spell-card.service';
@@ -20,7 +20,7 @@ export class PopupComponent implements OnInit {
   fromGradValue = '0';
   toGradValue = '9';
   selectedSchule = '';
-  komponentenFilter = '';
+  komponentenFilter = '0';
   beschreibungFilter = '';
   konzentration = 'alle';
   nameFilter = '';
@@ -114,6 +114,7 @@ export class PopupComponent implements OnInit {
   }
 
   advancedFilter(card: any): boolean {
+    console.log('ApplySorting');
     if (card.show) {
       return true;
     }
